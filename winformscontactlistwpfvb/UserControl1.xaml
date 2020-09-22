@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="UserControl1"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:winformscontactlistwpfvb"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
+    <UserControl.Resources>
+        <local:BinaryImageConverter x:Key="BinaryImage" />
+    </UserControl.Resources>
+    <Grid>
+        <DockPanel  >
+            <Border Margin="15" DockPanel.Dock="Top">
+                <TextBox Margin="5" Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" 
+                        BorderBrush="LightGray" TextChanged="TextBox_TextChanged" />
+            </Border>
+
+            <ListBox Name="myListBox" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+
+                        <StackPanel Orientation="Vertical" Margin="10" >
+
+                            <DockPanel LastChildFill="True" Width="350">
+                                <DockPanel DockPanel.Dock="Left">
+                                    <Image DockPanel.Dock="Left" Width="80" Source="{Binding Path=picture, Converter={StaticResource BinaryImage}}"/>
+
+                                </DockPanel>
+                                <DockPanel DockPanel.Dock="Left">
+
+                                    <DockPanel DockPanel.Dock="Top">
+                                        <TextBlock  DockPanel.Dock="Left" FontWeight="Bold" Text="Name:" Margin="5,0,10,0" />
+                                        <TextBlock  DockPanel.Dock="Left"  Text="{Binding first_name}"/>
+                                        <TextBlock  DockPanel.Dock="Left" Text=" " />
+                                        <TextBlock  DockPanel.Dock="Left"  Text="{Binding last_name}" Margin="0,0,5,0" />
+
+                                    </DockPanel>
+                                    <DockPanel DockPanel.Dock="Top">
+                                        <TextBlock  DockPanel.Dock="Left"  FontWeight="Bold" Text="Badge No:" Margin="5,0,10,0" />
+                                        <TextBlock DockPanel.Dock="Left"  Text="{Binding badge_no}" />
+
+
+                                    </DockPanel>
+                                    <DockPanel DockPanel.Dock="Top">
+                                        <TextBlock  DockPanel.Dock="Left"  FontWeight="Bold" Text="Login:" Margin="5,0,10,0" />
+                                        <TextBlock DockPanel.Dock="Left" Text="{Binding login}" />
+
+
+                                    </DockPanel>
+                                    <DockPanel DockPanel.Dock="Top">
+                                        <TextBlock  DockPanel.Dock="Left"  FontWeight="Bold" Text="EMail:" Margin="5,0,10,0" />
+                                        <TextBlock DockPanel.Dock="Left"  Text="{Binding email}" />
+
+
+                                    </DockPanel>
+                                </DockPanel>
+
+                            </DockPanel>
+
+
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel IsItemsHost="True" Orientation="Horizontal"  />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
+
+        </DockPanel>
+    </Grid>
+</UserControl>
