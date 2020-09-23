@@ -15,7 +15,7 @@ Public Class UserControl1
         cmd.Connection = connstr
 
         If searchtext.Trim() <> "" Then
-            cmd.CommandText = "select u.first_name, u.last_name, u.id_image, b.badge_no, u.login, p.picture, u.email from users u" & " left outer join badges b on u.id = b.user_id" & " left outer join pictures p on p.id = u.picture_id" & " where u.first_name like '%" & searchtext.Trim() & "%'"
+            cmd.CommandText = "select u.first_name, u.last_name, u.id_image, b.badge_no, u.login, p.picture, u.email from users u" & " left outer join badges b on u.id = b.user_id" & " left outer join pictures p on p.id = u.picture_id" & " where u.first_name like '%" & searchtext & "%' or u.last_name like '%" & searchtext & "%' or b.badge_no like '%" & searchtext & "%' or u.login like '%" & searchtext & "%' or p.picture like '%" & searchtext & "%' or u.email like '%" & searchtext & "%'    "
         Else
             cmd.CommandText = "select u.first_name, u.last_name, u.id_image, b.badge_no, u.login, p.picture, u.email from users u" & " left outer join badges b on u.id = b.user_id" & " left outer join pictures p on p.id = u.picture_id"
         End If
